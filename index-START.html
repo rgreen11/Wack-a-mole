@@ -59,14 +59,15 @@
 
 
   function peek(){
-    const time = randomTime(200, 1000);
+    const time = randomTime(200, 2000);
     const hole = randomHole(holes)
     hole.classList.add('up')
 
     setTimeout(()=>{
       hole.classList.remove('up');
       if(!timeup) peek()
-    }, time)
+    }, time);
+    
   }
 
   function startGame(){
@@ -82,9 +83,12 @@
   function hit(e){
     if(!e.isTrusted) return;
     score ++;
+
+    this.classList.remove('up');
+    scoreBoard.textContent = score;
   }
 
-  moles.forEach(mole => addEventListener('click', hit))
+  moles.forEach(mole => mole.addEventListener('click', hit));
 </script>
 </body>
 </html>
